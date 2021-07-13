@@ -27,6 +27,12 @@ function App() {
             setSelectedItems((prev) => [...prev, _selected])
           }
         />
+        <NestedSelector
+          nestedData={MOCK}
+          onSelectConfirm={(_selected) =>
+            setSelectedItems((prev) => [...prev, _selected])
+          }
+        />
       </ScrollView>
     </SafeAreaView>
   );

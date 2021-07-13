@@ -11,11 +11,24 @@ export const styles = StyleSheet.create({
     paddingVertical: 4,
     paddingHorizontal: 4,
     paddingLeft: 10,
+    borderWidth: 1,
+    minHeight: 28,
+    borderColor: "orange",
+  },
+  placeholderChip: {
+    borderStyle: "dashed",
+    borderColor: "#cccccc",
+    backgroundColor: "white",
+    minWidth: 84,
   },
   title: {
     fontSize: 14,
     alignItems: "center",
     justifyContent: "center",
+  },
+  placeholderTitle: {
+    textTransform: "capitalize",
+    color: "#cccccc",
   },
   closeButton: {
     borderRadius: 0,

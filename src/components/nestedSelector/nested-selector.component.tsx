@@ -8,27 +8,34 @@ import { styles } from "./nested-selector.styles";
 
 interface Props {
   nestedData: NestedDataType[];
-  levels: string[];
+  levels?: string[];
   onSelectConfirm?(selected: NestedDataType[]): void;
 }
 
 export const NestedSelector = (props: Props) => {
   const [selected, setSelected] = useState<NestedDataType[]>([]);
 
-  const isEdgeNode = selected.length === props.levels.length;
+  const isEdgeNode = selected.length
+    ? selected[selected.length - 1].children?.length === 0
+    : false;
 
   return (
     <View style={styles.container}>
       <View style={styles.chipLayout}>
-        <Chip title={"hey man"} />
-        <Chip title={"yay man"} />
-        <Chip title={"yay man"} />
-        <Chip title={"yay man"} />
-        <Chip title={"disco"} />
-        <Chip title={"dafa"} />
-        <Chip title={"really long name"} />
-        <Chip title={"fee"} />
-        <Chip title={"yay man"} />
+        {selected?.map((item, i) => (
+          <Chip
+            key={item.value}
+            title={item.label}
+            onClose={() => {
+              setSelected((prev) => {
+                return prev.slice(0, i);
+              });
+            }}
+          />
+        ))}
+        {!isEdgeNode && (
+          <Chip isPlaceholder title={props.levels?.[selected.length] || ""} />
+        )}
       </View>
       <Select
         onConfirm={() => {
