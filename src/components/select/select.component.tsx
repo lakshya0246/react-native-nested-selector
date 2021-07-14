@@ -23,7 +23,11 @@ interface Props {
 
 export const Select = (props: Props) => {
   function handleSelect(_: any, selectedIndex: number) {
-    props.onSelect?.(props.options[selectedIndex]);
+    if (selectedIndex === 0) {
+      props.onBack?.();
+    } else {
+      props.onSelect?.(props.options[selectedIndex - 1]);
+    }
   }
 
   return (
@@ -40,9 +44,11 @@ export const Select = (props: Props) => {
         <Picker
           {...props.selectProps}
           style={styles.select}
-          selectedValue={props.value}
+          selectedValue={props.value?.value || "default"}
           onValueChange={handleSelect}
         >
+          {/* TODO:Fix makes the whole unselectable */}
+          <Picker.Item label="Select" value="select" />
           {props.options.map((option) => {
             return (
               <Picker.Item

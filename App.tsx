@@ -1,8 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Chip } from "./src/components/chip";
-import { Select } from "./src/components/select";
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  useColorScheme,
+  StatusBar,
+} from "react-native";
 import { MOCK } from "./mock";
 import { NestedSelector } from "./src/components/nestedSelector";
 import { NestedDataType } from "./src/types";
@@ -16,9 +19,12 @@ const POLITICAL_HIERARCHY = [
 
 function App() {
   const [selectedItems, setSelectedItems] = useState<NestedDataType[][]>([]);
+  const isDarkMode = useColorScheme() === "dark";
 
   return (
     <SafeAreaView>
+      <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <NestedSelector
           levels={POLITICAL_HIERARCHY}

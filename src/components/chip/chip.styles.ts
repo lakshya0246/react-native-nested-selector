@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 4,
     paddingLeft: 10,
     borderWidth: 1,
-    minHeight: 28,
+    minHeight: 30,
     borderColor: "orange",
   },
   placeholderChip: {

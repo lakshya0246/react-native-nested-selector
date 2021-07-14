@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Pressable, Text, View } from "react-native";
 import { MOCK } from "../../../mock";
 import { NestedDataType } from "../../types";
@@ -19,6 +19,10 @@ export const NestedSelector = (props: Props) => {
     ? selected[selected.length - 1].children?.length === 0
     : false;
 
+  useEffect(() => {
+    console.log(selected.map((s) => s.label).toString());
+  }, [selected]);
+
   return (
     <View style={styles.container}>
       <View style={styles.chipLayout}>
@@ -38,6 +42,16 @@ export const NestedSelector = (props: Props) => {
         )}
       </View>
       <Select
+        value={
+          isEdgeNode ? selected[selected.length - 1] : selected[selected.length]
+        }
+        options={
+          selected.length === 0
+            ? props.nestedData
+            : isEdgeNode
+            ? (selected[selected.length - 2].children as NestedDataType[])
+            : (selected[selected.length - 1].children as NestedDataType[])
+        }
         onConfirm={() => {
           if (selected.length) {
             setSelected([]);
@@ -53,13 +67,6 @@ export const NestedSelector = (props: Props) => {
             }
             return [...prev, _selected];
           })
-        }
-        options={
-          selected.length === 0
-            ? props.nestedData
-            : isEdgeNode
-            ? (selected[selected.length - 2].children as NestedDataType[])
-            : (selected[selected.length - 1].children as NestedDataType[])
         }
       />
     </View>
