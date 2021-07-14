@@ -1,6 +1,7 @@
 import { Picker, PickerProps } from "@react-native-picker/picker";
 import React from "react";
 import { Pressable, Text, View, Image } from "react-native";
+import { COLORS } from "../../colors";
 import { NestedDataType } from "../../types";
 import { ACTION_BUTTON_RIPPLE, styles } from "./select.styles";
 
@@ -47,8 +48,9 @@ export const Select = (props: Props) => {
       )}
       <View style={styles.selectContainer}>
         <Picker
-          {...props.selectProps}
+          dropdownIconColor={COLORS.contrastDark}
           style={styles.select}
+          {...props.selectProps}
           selectedValue={props.value?.value || "default"}
           onValueChange={handleSelect}
         >

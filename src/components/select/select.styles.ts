@@ -16,20 +16,25 @@ export const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
     backgroundColor: COLORS.contrastDark,
+    borderRadius: 6,
   },
   actionButtonContainer: {
-    width: 48,
-    height: 48,
+    width: 52,
+    height: 52,
     borderRadius: 6,
     overflow: "hidden",
   },
   selectContainer: {
     flex: 1,
     marginHorizontal: 4,
+    borderColor: COLORS.contrastDark,
+    borderWidth: 2,
+    borderRadius: 6,
+    overflow: "hidden",
   },
   select: {
     height: 48,
-    borderRadius: 6,
+    borderWidth: 0,
   },
 });
 
