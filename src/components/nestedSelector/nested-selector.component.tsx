@@ -12,6 +12,15 @@ interface Props {
   onSelectConfirm?(selected: NestedDataType[]): void;
 }
 
+export const ConnectorArrow = () => {
+  return (
+    <Image
+      style={styles.connectorArrow}
+      source={require("./img/arrow-right.png")}
+    ></Image>
+  );
+};
+
 export const NestedSelector = (props: Props) => {
   const [selected, setSelected] = useState<NestedDataType[]>([]);
 
@@ -19,26 +28,29 @@ export const NestedSelector = (props: Props) => {
     ? selected[selected.length - 1].children?.length === 0
     : false;
 
-  useEffect(() => {
-    console.log(selected.map((s) => s.label).toString());
-  }, [selected]);
-
   return (
     <View style={styles.container}>
       <View style={styles.chipLayout}>
         {selected?.map((item, i) => (
-          <Chip
-            key={item.value}
-            title={item.label}
-            onClose={() => {
-              setSelected((prev) => {
-                return prev.slice(0, i);
-              });
-            }}
-          />
+          <View style={styles.chipContainer}>
+            {/* Hide for first child */}
+            {i > 0 && <ConnectorArrow />}
+            <Chip
+              key={item.value}
+              title={item.label}
+              onClose={() => {
+                setSelected((prev) => {
+                  return prev.slice(0, i);
+                });
+              }}
+            />
+          </View>
         ))}
         {!isEdgeNode && (
-          <Chip isPlaceholder title={props.levels?.[selected.length] || ""} />
+          <View style={styles.chipContainer}>
+            {selected.length > 0 && <ConnectorArrow />}
+            <Chip isPlaceholder title={props.levels?.[selected.length] || ""} />
+          </View>
         )}
       </View>
       <Select

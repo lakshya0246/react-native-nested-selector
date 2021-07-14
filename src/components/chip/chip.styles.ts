@@ -3,8 +3,6 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   chip: {
     borderRadius: 50,
-    marginRight: 4,
-    marginBottom: 4,
     width: "auto",
     flexDirection: "row",
     backgroundColor: "orange",
@@ -20,6 +18,7 @@ export const styles = StyleSheet.create({
     borderColor: "#cccccc",
     backgroundColor: "white",
     minWidth: 84,
+    paddingRight: 10,
   },
   title: {
     fontSize: 14,

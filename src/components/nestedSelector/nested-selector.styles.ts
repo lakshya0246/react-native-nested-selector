@@ -9,4 +9,16 @@ export const styles = StyleSheet.create({
     width: "100%",
     backgroundColor: "green",
   },
+  chipContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginRight: 4,
+    marginBottom: 4,
+  },
+  connectorArrow: {
+    height: 20,
+    width: 20,
+    tintColor: "orange",
+    marginRight: 4,
+  },
 });
