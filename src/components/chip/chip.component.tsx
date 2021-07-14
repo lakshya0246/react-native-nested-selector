@@ -1,11 +1,20 @@
 import React from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  PressableAndroidRippleConfig,
+  Text,
+  View,
+} from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
+import { COLORS } from "../../colors";
 import { styles } from "./chip.styles";
 
 interface Props {
   title?: string;
   onClose?(): void;
   isPlaceholder?: boolean;
+  closeButtonAndroidRipple?: PressableAndroidRippleConfig;
 }
 
 export const Chip = (props: Props) => {
@@ -24,7 +33,11 @@ export const Chip = (props: Props) => {
       <Text style={styles.title}>{props.title}</Text>
       <Pressable
         style={styles.closeButton}
-        android_ripple={{ color: "hotpink", borderless: true, radius: 14 }}
+        android_ripple={{
+          color: COLORS.primaryDark,
+          borderless: true,
+          radius: 14,
+        }}
         onPress={() => props.onClose?.()}
       >
         <Image style={styles.closeButtonIcon} source={require("./img/x.png")} />

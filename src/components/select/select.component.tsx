@@ -2,7 +2,7 @@ import { Picker, PickerProps } from "@react-native-picker/picker";
 import React from "react";
 import { Pressable, Text, View, Image } from "react-native";
 import { NestedDataType } from "../../types";
-import { styles } from "./select.styles";
+import { ACTION_BUTTON_RIPPLE, styles } from "./select.styles";
 
 interface SelectOption {
   value: string | number;
@@ -13,7 +13,6 @@ interface Props {
   options: NestedDataType[];
   value?: NestedDataType;
   onSelect?(selected: NestedDataType): void;
-  /** Goes back one level */
   onBack?(): void;
   onConfirm?(): void;
   selectProps?: PickerProps;
@@ -33,12 +32,18 @@ export const Select = (props: Props) => {
   return (
     <View style={styles.container}>
       {!props.hideBackButton && (
-        <Pressable style={styles.actionButton} onPress={props.onBack}>
-          <Image
-            style={styles.actionButtonIcon}
-            source={require("./img/level-up.png")}
-          />
-        </Pressable>
+        <View style={styles.actionButtonContainer}>
+          <Pressable
+            style={styles.actionButton}
+            android_ripple={ACTION_BUTTON_RIPPLE}
+            onPress={props.onBack}
+          >
+            <Image
+              style={styles.actionButtonIcon}
+              source={require("./img/level-up.png")}
+            />
+          </Pressable>
+        </View>
       )}
       <View style={styles.selectContainer}>
         <Picker
@@ -47,7 +52,6 @@ export const Select = (props: Props) => {
           selectedValue={props.value?.value || "default"}
           onValueChange={handleSelect}
         >
-          {/* TODO:Fix makes the whole unselectable */}
           <Picker.Item label="Select" value="select" />
           {props.options.map((option) => {
             return (
@@ -61,12 +65,18 @@ export const Select = (props: Props) => {
         </Picker>
       </View>
       {!props.hideConfirmButton && (
-        <Pressable style={styles.actionButton} onPress={props.onConfirm}>
-          <Image
-            style={styles.actionButtonIcon}
-            source={require("./img/check.png")}
-          />
-        </Pressable>
+        <View style={styles.actionButtonContainer}>
+          <Pressable
+            android_ripple={ACTION_BUTTON_RIPPLE}
+            style={styles.actionButton}
+            onPress={props.onConfirm}
+          >
+            <Image
+              style={styles.actionButtonIcon}
+              source={require("./img/check.png")}
+            />
+          </Pressable>
+        </View>
       )}
     </View>
   );

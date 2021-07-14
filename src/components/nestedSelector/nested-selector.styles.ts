@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { COLORS } from "../../colors";
 
 export const styles = StyleSheet.create({
   container: {},
@@ -7,18 +8,18 @@ export const styles = StyleSheet.create({
     flex: 1,
     flexWrap: "wrap",
     width: "100%",
-    backgroundColor: "green",
+    marginBottom: 8,
   },
   chipContainer: {
     flexDirection: "row",
     alignItems: "center",
-    marginRight: 4,
+    marginRight: 2,
     marginBottom: 4,
   },
   connectorArrow: {
     height: 20,
     width: 20,
-    tintColor: "orange",
-    marginRight: 4,
+    tintColor: COLORS.primaryLight,
+    marginRight: 2,
   },
 });

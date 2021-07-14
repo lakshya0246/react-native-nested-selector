@@ -32,11 +32,10 @@ export const NestedSelector = (props: Props) => {
     <View style={styles.container}>
       <View style={styles.chipLayout}>
         {selected?.map((item, i) => (
-          <View style={styles.chipContainer}>
+          <View style={styles.chipContainer} key={item.value}>
             {/* Hide for first child */}
             {i > 0 && <ConnectorArrow />}
             <Chip
-              key={item.value}
               title={item.label}
               onClose={() => {
                 setSelected((prev) => {
