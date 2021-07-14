@@ -1,23 +1,10 @@
 import React from "react";
-import {
-  Image,
-  Pressable,
-  PressableAndroidRippleConfig,
-  Text,
-  View,
-} from "react-native";
-import { Colors } from "react-native/Libraries/NewAppScreen";
+import { Image, Pressable, Text, View } from "react-native";
 import { COLORS } from "../../colors";
+import { ChipProps } from "../../types";
 import { styles } from "./chip.styles";
 
-interface Props {
-  title?: string;
-  onClose?(): void;
-  isPlaceholder?: boolean;
-  closeButtonAndroidRipple?: PressableAndroidRippleConfig;
-}
-
-export const Chip = (props: Props) => {
+export const Chip = (props: ChipProps) => {
   if (props.isPlaceholder) {
     return (
       <View style={[styles.chip, styles.placeholderChip]}>

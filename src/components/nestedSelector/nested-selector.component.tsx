@@ -1,16 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Image, Pressable, Text, View } from "react-native";
-import { MOCK } from "../../../mock";
-import { NestedDataType } from "../../types";
+import React, { useState } from "react";
+import { Image, View } from "react-native";
+import { NestedDataType, NestedSelectorProps } from "../../types";
 import { Chip } from "../chip";
 import { Select } from "../select";
 import { styles } from "./nested-selector.styles";
-
-interface Props {
-  nestedData: NestedDataType[];
-  levels?: string[];
-  onSelectConfirm?(selected: NestedDataType[]): void;
-}
 
 export const ConnectorArrow = () => {
   return (
@@ -21,7 +14,7 @@ export const ConnectorArrow = () => {
   );
 };
 
-export const NestedSelector = (props: Props) => {
+export const NestedSelector = (props: NestedSelectorProps) => {
   const [selected, setSelected] = useState<NestedDataType[]>([]);
 
   const isEdgeNode = selected.length
@@ -33,7 +26,7 @@ export const NestedSelector = (props: Props) => {
       <View style={styles.chipLayout}>
         {selected?.map((item, i) => (
           <View style={styles.chipContainer} key={item.value}>
-            {/* Hide for first child */}
+            {/* Hide if first child */}
             {i > 0 && <ConnectorArrow />}
             <Chip
               title={item.label}
@@ -47,6 +40,7 @@ export const NestedSelector = (props: Props) => {
         ))}
         {!isEdgeNode && (
           <View style={styles.chipContainer}>
+            {/* Hide if first child */}
             {selected.length > 0 && <ConnectorArrow />}
             <Chip isPlaceholder title={props.levels?.[selected.length] || ""} />
           </View>

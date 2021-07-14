@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { PressableAndroidRippleConfig, StyleSheet } from "react-native";
 import { COLORS } from "../../colors";
 
 export const styles = StyleSheet.create({
@@ -38,6 +38,6 @@ export const styles = StyleSheet.create({
   },
 });
 
-export const ACTION_BUTTON_RIPPLE = {
+export const ACTION_BUTTON_RIPPLE: PressableAndroidRippleConfig = {
   color: COLORS.contrastDarker,
 };

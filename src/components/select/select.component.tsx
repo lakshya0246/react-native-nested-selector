@@ -1,27 +1,11 @@
-import { Picker, PickerProps } from "@react-native-picker/picker";
+import { Picker } from "@react-native-picker/picker";
 import React from "react";
-import { Pressable, Text, View, Image } from "react-native";
+import { Image, Pressable, View } from "react-native";
 import { COLORS } from "../../colors";
-import { NestedDataType } from "../../types";
+import { SelectProps } from "../../types";
 import { ACTION_BUTTON_RIPPLE, styles } from "./select.styles";
 
-interface SelectOption {
-  value: string | number;
-  label: string;
-}
-
-interface Props {
-  options: NestedDataType[];
-  value?: NestedDataType;
-  onSelect?(selected: NestedDataType): void;
-  onBack?(): void;
-  onConfirm?(): void;
-  selectProps?: PickerProps;
-  hideBackButton?: boolean;
-  hideConfirmButton?: boolean;
-}
-
-export const Select = (props: Props) => {
+export const Select = (props: SelectProps) => {
   function handleSelect(_: any, selectedIndex: number) {
     if (selectedIndex === 0) {
       props.onBack?.();
@@ -36,7 +20,11 @@ export const Select = (props: Props) => {
         <View style={styles.actionButtonContainer}>
           <Pressable
             style={styles.actionButton}
-            android_ripple={ACTION_BUTTON_RIPPLE}
+            android_ripple={
+              props.actionButtonAndroidRipple
+                ? props.actionButtonAndroidRipple
+                : ACTION_BUTTON_RIPPLE
+            }
             onPress={props.onBack}
           >
             <Image
@@ -69,7 +57,11 @@ export const Select = (props: Props) => {
       {!props.hideConfirmButton && (
         <View style={styles.actionButtonContainer}>
           <Pressable
-            android_ripple={ACTION_BUTTON_RIPPLE}
+            android_ripple={
+              props.actionButtonAndroidRipple
+                ? props.actionButtonAndroidRipple
+                : ACTION_BUTTON_RIPPLE
+            }
             style={styles.actionButton}
             onPress={props.onConfirm}
           >
