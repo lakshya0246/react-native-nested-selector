@@ -6,6 +6,7 @@ import {
   useColorScheme,
   StatusBar,
   View,
+  Text,
 } from "react-native";
 import { MOCK } from "./mock";
 import { NestedSelector } from "./src/components/nestedSelector";
@@ -26,8 +27,12 @@ function App() {
     <SafeAreaView>
       <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
 
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView
+        style={{ padding: 12 }}
+        contentInsetAdjustmentBehavior="automatic"
+      >
         <View style={styles.container}>
+          <Text style={styles.exampleTitle}>With levels prop defined</Text>
           <NestedSelector
             levels={POLITICAL_HIERARCHY}
             nestedData={MOCK}
@@ -35,6 +40,10 @@ function App() {
               setSelectedItems((prev) => [...prev, _selected])
             }
           />
+        </View>
+
+        <View style={styles.container}>
+          <Text style={styles.exampleTitle}>Without levels prop</Text>
           <NestedSelector
             nestedData={MOCK}
             onSelectConfirm={(_selected) =>
@@ -50,6 +59,9 @@ function App() {
 const styles = StyleSheet.create({
   container: {
     padding: 12,
+  },
+  exampleTitle: {
+    marginBottom: 12,
   },
 });
 

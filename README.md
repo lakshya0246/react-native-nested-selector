@@ -15,3 +15,9 @@ Works best with symmetrical data, you can provide an array that describes the hi
 - Add support to override styles
 - Add iOS support
 - Add search for quickly adding single option as well as a whole chain of options
+
+In the project directory, you can run:
+
+### `expo start --android`
+
+Note: `expo` needs to be globally installed. More instructions can be found [here](https://reactnative.dev/docs/environment-setup)
