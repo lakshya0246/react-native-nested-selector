@@ -8,3 +8,7 @@ Roadmap
 Add support to override styles
 Add iOS support
 Add search for quickly adding single option as well as a whole chain of options
+
+# react-native-nested-selector
+
+A selector for nested selector for React Native
